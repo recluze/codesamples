@@ -1,0 +1,7 @@
+<?xml version='1.0'?>
+   <PaymentInfo xmlns='http://jeffhanson.com/payments'>
+     <Name>John Doe</Name>
+     <Amount>125.00</Amount>
+     <CreditCardNumber>1234-5678-8765-4321</CreditCardNumber>
+     <Date>July 6, 2005</Date>
+   </PaymentInfo>

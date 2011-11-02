@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<invoice XMLns="http://www.company.com/accounting">
+	<items>
+		<item>
+			<desc>Applied Cryptography</desc>
+			<type>book</type>
+			<unitprice>44.50</unitprice>
+			<quantity>1</quantity>
+		</item>
+	</items>
+	<creditcard>
+		<number>12345678</number>
+		<expiry>10/20/2009</expiry>
+		<lastname>John</lastname>
+		<firstname>Smith</firstname>
+	</creditcard>
+</invoice>

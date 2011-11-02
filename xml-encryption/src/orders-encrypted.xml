@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PaymentInfo xmlns="http://jeffhanson.com/payments">
+	<xenc:EncryptedData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#"
+		Type="http://www.w3.org/2001/04/xmlenc#Content">
+		<xenc:EncryptionMethod Algorithm="http://www.w3.org/2001/04/xmlenc#aes128-cbc"
+			xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" />
+		<ds:KeyInfo xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+			<xenc:EncryptedKey xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">
+				<xenc:EncryptionMethod
+					Algorithm="http://www.w3.org/2001/04/xmlenc#kw-tripledes"
+					xmlns:xenc="http://www.w3.org/2001/04/xmlenc#" />
+				<xenc:CipherData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">
+					<xenc:CipherValue xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">ywrZ/B6EpuvTZ3eUzhGDTipBLzNZFO9mhNlj9uM6YA4=</xenc:CipherValue>
+				</xenc:CipherData>
+			</xenc:EncryptedKey>
+		</ds:KeyInfo>
+		<xenc:CipherData xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">
+			<xenc:CipherValue xmlns:xenc="http://www.w3.org/2001/04/xmlenc#">P/jjEEjZrMhpu3SJbdmhSRresLasNP2vwMcDPjuQptGJIOr3a9MDKW9N3itYmCqx1xsINgJstyVz
+				Rogh9QD1sb0dgJq1c0JYSgpISkrpoFjnPu3hJk3fX+LrqTXGYIez/HYE/CfhN+Tq9NEB2OmEY8vs
+				F/UqiqmyibAJ0AJrI7BTWWofokHb7RO6/4vQwYA+53zZVNtvTNJOBnEbTU1z4yj5+KvcT0IEvBIc
+				7QrGk98YI3h3xlS2dOx/KSTyPP6LoQzn42W7PF8PTqQeIs2kuaoV1rky3ecOYOLILlRk3lE=</xenc:CipherValue>
+		</xenc:CipherData>
+	</xenc:EncryptedData>
+</PaymentInfo>

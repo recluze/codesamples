@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/><Reference URI="#invoice"><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>RHMByCHLfBGghCCMASJrCIjuu94=</DigestValue></Reference></SignedInfo><SignatureValue>VNZULWaSWldVEAAVHd+gaWqrX2uKmCbqFauBgowvc/X++yxsf+PwKA==</SignatureValue><Object Id="invoice"><invoice XMLns="http://www.company.com/accounting" xmlns="">
+	<items>
+		<item>
+			<desc>Applied Cryptography</desc>
+			<type>book</type>
+			<unitprice>44.50</unitprice>
+			<quantity>1</quantity>
+		</item>
+	</items>
+	<creditcard>
+		<number>12345678</number>
+		<expiry>10/20/2009</expiry>
+		<lastname>John</lastname>
+		<firstname>Smith</firstname>
+	</creditcard>
+</invoice></Object></Signature>

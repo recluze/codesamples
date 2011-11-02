@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<customers>
+	<customer>
+		<name>John Doe</name>
+		<order>GFW</order>
+		<quantity>34</quantity>
+		<price>31</price>
+	</customer>
+	<customer>
+		<name>Mill Hue</name>
+		<order>KIU</order>
+		<quantity>343</quantity>
+		<price>311</price>
+	</customer>
+	<customer>
+		<name>Jane Doe</name>
+		<order>ERW</order>
+		<quantity>378</quantity>
+		<price>32</price>
+	</customer>
+	<customer>
+		<name>Mue Con</name>
+		<order>ER#</order>
+		<quantity>33</quantity>
+		<price>312</price>
+	</customer>
+	<customer>
+		<name>Joe Mack</name>
+		<order>LR</order>
+		<quantity>12</quantity>
+		<price>41</price>
+	</customer>
+</customers>

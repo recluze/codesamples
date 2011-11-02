@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/jsr173_1.0_api.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/resolver.jar"/>
+	<classpathentry exported="true" kind="lib" path="F:/javalibs/saxon-9/saxon9.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/saxon9-ant.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/saxon9-dom.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/saxon9-dom4j.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/saxon9-jdom.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/saxon9-s9api.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/saxon9-sql.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/saxon9-xom.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/saxon9-xpath.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/saxon9-xqj.jar"/>
+	<classpathentry exported="true" kind="lib" path="F:/javalibs/saxon-9/xbean.jar"/>
+	<classpathentry exported="true" kind="lib" path="F:/javalibs/saxon-9/xbean_xpath.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/xmlbeans-qname.jar"/>
+	<classpathentry kind="lib" path="F:/javalibs/saxon-9/xmlpublic.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

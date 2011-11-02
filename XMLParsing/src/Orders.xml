@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Orders>
+	<Customer ID="C001">
+		<StockSymbol>
+			MSFT
+			<Quantity> 200</Quantity>
+			<TradeType> B</TradeType>
+		</StockSymbol>
+	</Customer>
+
+	<Customer ID="C004">
+		<StockSymbol>
+			MSFT
+			<Quantity> 150</Quantity>
+			<TradeType> B</TradeType>
+		</StockSymbol>
+		<StockSymbol>
+			IBM
+			<Quantity> 150</Quantity>
+			<TradeType> S</TradeType>
+		</StockSymbol>
+	</Customer>
+</Orders>

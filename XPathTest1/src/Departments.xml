@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Departments xmlns="http://www.wrox.com/xquery/samples/departments">
+	<Department>
+		<DepartmentID>1</DepartmentID>
+		<Name>Engineering</Name>
+		<GroupName>Research and Development</GroupName>
+	</Department>
+	<Department>
+		<DepartmentID>2</DepartmentID>
+		<Name>Tool Design</Name>
+		<GroupName>Research and Development</GroupName>
+	</Department>
+	<Department>
+		<DepartmentID>3</DepartmentID>
+		<Name>Sales</Name>
+		<GroupName>Sales and Marketing</GroupName>
+	</Department>
+	<Department>
+		<DepartmentID>4</DepartmentID>
+		<Name>Marketing</Name>
+		<GroupName>Sales and Marketing</GroupName>
+	</Department>
+	<Department>
+		<DepartmentID>5</DepartmentID>
+		<Name>Purchasing</Name>
+		<GroupName>Inventory Management</GroupName>
+	</Department>
+</Departments>
