@@ -6,31 +6,34 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
+import java.io.File;
+
 public class StudentClassResults {
 	private Vector<StudentResult> results;
 	private String resultsFilename;
 
 	public StudentClassResults() {
 		results = new Vector<StudentResult>();
-		StudentResult a = new StudentResult();
-		a.setsNo(1);
-		a.setStudentID("10-1005");
-		a.setShouldRound(true);
-		a.setProposedGrade("A");
-		a.setAddCurve(2);
-		a.setTotalMarks(87.01);
-		a.setStudentName("Blah");
-		results.add(a);
-
-		a = new StudentResult();
-		a.setsNo(2);
-		a.setTotalMarks(60);
-		a.setMulCurve(1.51);
-		a.setProposedGrade("D");
-		a.setStudentID("11-1002");
-		a.setStudentName("Yada");
-		results.add(a);
-
+		// StudentResult a = new StudentResult();
+		// a.setsNo(1);
+		// a.setStudentID("10-1005");
+		// a.setShouldRound(true);
+		// a.setProposedGrade("A");
+		// a.setAddCurve(2);
+		// a.setTotalMarks(87.01);
+		// a.setStudentName("Blah");
+		// results.add(a);
+		//
+		// a = new StudentResult();
+		// a.setsNo(2);
+		// a.setTotalMarks(60);
+		// a.setMulCurve(1.51);
+		// a.setProposedGrade("D");
+		// a.setStudentID("11-1002");
+		// a.setStudentName("Yada");
+		// results.add(a);
+		ExcelImporter eI = new ExcelImporter(results);
+		eI.importDataFromFile(new File("res/CS598.xls"));
 	}
 
 	/**
@@ -119,12 +122,7 @@ class GradeTableModel implements TableModel {
 	 * Don't need to implement this method unless your table's editable.
 	 */
 	public boolean isCellEditable(int row, int col) {
-		// only allow editing of FinalGrade for manual entry
-		if (col < 7) {
-			return false;
-		} else {
-			return true;
-		}
+		return true;
 	}
 
 	@Override

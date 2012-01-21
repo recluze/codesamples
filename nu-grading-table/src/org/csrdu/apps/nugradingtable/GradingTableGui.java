@@ -6,20 +6,27 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.RowSorter;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 
-import com.sun.xml.internal.ws.api.server.Container;
-
 public class GradingTableGui extends JFrame {
 	JTable gradeTable;
+	JPanel optionsPane;
+	private JLabel label;
+	private JTextField txtCourseName;
 
 	public void addComponentsToPane() {
 		JButton button;
@@ -28,27 +35,45 @@ public class GradingTableGui extends JFrame {
 		GridBagConstraints c = new GridBagConstraints();
 		c.fill = GridBagConstraints.HORIZONTAL;
 
-		button = new JButton("Button 1");
-		c.weightx = 0.5;
+		// start setting options Pane
+		optionsPane = new JPanel();
+		optionsPane.setSize(getWidth() / 2, 100);
+		optionsPane.setLayout(new GridBagLayout());
+		GridBagConstraints c2 = new GridBagConstraints();
 
+		label = new JLabel("Course Code");
+		c2.fill = GridBagConstraints.HORIZONTAL;
+		c2.gridx = 0;
+		c2.gridy = 0;
+		c2.weightx = 0.25;
+		optionsPane.add(label, c2);
+
+		txtCourseName = new JTextField("Course Name");
+		c2.fill = GridBagConstraints.HORIZONTAL;
+		c2.gridx = 1;
+		c2.gridy = 0;
+		c2.weightx = 0.75;
+		optionsPane.add(txtCourseName, c2);
+
+		label = new JLabel("Course Name");
+		c2.fill = GridBagConstraints.HORIZONTAL;
+		c2.gridx = 0;
+		c2.gridy = 1;
+		c2.weightx = 0.25;
+		optionsPane.add(label, c2);
+
+		// Continue with JTable
+		c.weightx = 0.25;
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 0;
-		this.add(button, c);
-
-		button = new JButton("Button 2");
+		this.add(optionsPane, c);
+		label = new JLabel("");
+		c.weightx = 0.75;
 		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 0.5;
 		c.gridx = 1;
 		c.gridy = 0;
-		this.add(button, c);
-
-		button = new JButton("Button 3");
-		c.fill = GridBagConstraints.HORIZONTAL;
-		c.weightx = 0.5;
-		c.gridx = 2;
-		c.gridy = 0;
-		this.add(button, c);
+		this.add(label, c);
 
 		gradeTable = new JTable();
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -82,9 +107,9 @@ public class GradingTableGui extends JFrame {
 
 	public void populateGradeTable() {
 		StudentClassResults classResults = new StudentClassResults();
-		// set model for data retrieval 
+		// set model for data retrieval
 		gradeTable.setModel(classResults.getRawData());
-		// set change listener 
+		// set change listener
 		gradeTable.getModel().addTableModelListener(
 				new GradeTableModelListener(classResults, gradeTable));
 	}
@@ -102,4 +127,5 @@ public class GradingTableGui extends JFrame {
 		gtGui.populateGradeTable();
 		gtGui.setVisible(true);
 	}
+
 }
