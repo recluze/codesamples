@@ -2,16 +2,17 @@ package org.csrdu.apps.nugradingtable;
 
 public class StudentResult {
     /** Data submitted by the instructor */
-    private String studentName;
-    private int sNo;
-    private String studentID;
-    private int totalMarks;
-    private String proposedGrade;
+    private String studentName = "";
+    private int sNo = 0;
+    private String studentID = "";
+    private double totalMarks = 0;
+    private String proposedGrade = "";
+    private String finalGrade = "B";
 
     /** Calculation data */
-    private double addCurve;
-    private double mulCurve;
-    private boolean shouldRound;
+    private double addCurve = 0.0;
+    private double mulCurve = 1;
+    private boolean shouldRound = false;
 
     public String getCalculatedGrade() {
         double calcMarks = getCalculatedMarks();
@@ -64,12 +65,12 @@ public class StudentResult {
         this.mulCurve = d;
     }
 
-    public int getTotalMarks() {
+    public double getTotalMarks() {
         return totalMarks;
     }
 
-    public void setTotalMarks(int totalMarks) {
-        this.totalMarks = totalMarks;
+    public void setTotalMarks(double d) {
+        this.totalMarks = d;
     }
 
     public String getProposedGrade() {
@@ -132,4 +133,18 @@ public class StudentResult {
     public void setStudentID(String studentID) {
         this.studentID = studentID;
     }
+
+	/**
+	 * @return the finalGrade
+	 */
+	public String getFinalGrade() {
+		return finalGrade;
+	}
+
+	/**
+	 * @param finalGrade the finalGrade to set
+	 */
+	public void setFinalGrade(String finalGrade) {
+		this.finalGrade = finalGrade;
+	}
 }
