@@ -8,6 +8,7 @@ public class StudentResult {
     private double totalMarks = 0;
     private String proposedGrade = "";
     private String finalGrade = "B";
+    private String section = "A"; 
 
     /** Calculation data */
     private double addCurve = 0.0;
@@ -53,7 +54,7 @@ public class StudentResult {
         return addCurve;
     }
 
-    public void setAddCurve(float addCurve) {
+    public void setAddCurve(double addCurve) {
         this.addCurve = addCurve;
     }
 
@@ -146,5 +147,19 @@ public class StudentResult {
 	 */
 	public void setFinalGrade(String finalGrade) {
 		this.finalGrade = finalGrade;
+	}
+
+	/**
+	 * @return the section
+	 */
+	public String getSection() {
+		return section;
+	}
+
+	/**
+	 * @param section the section to set
+	 */
+	public void setSection(String section) {
+		this.section = section;
 	}
 }

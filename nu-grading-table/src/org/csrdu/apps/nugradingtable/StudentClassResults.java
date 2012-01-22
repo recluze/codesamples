@@ -11,29 +11,15 @@ import java.io.File;
 public class StudentClassResults {
 	private Vector<StudentResult> results;
 	private String resultsFilename;
+	private String courseCode = "";
+	private String courseName = "";
+	private double addCurve = 0.0;
+	private double mulCurve = 1.0;
+	private boolean isRound = false;
 
 	public StudentClassResults() {
 		results = new Vector<StudentResult>();
-		// StudentResult a = new StudentResult();
-		// a.setsNo(1);
-		// a.setStudentID("10-1005");
-		// a.setShouldRound(true);
-		// a.setProposedGrade("A");
-		// a.setAddCurve(2);
-		// a.setTotalMarks(87.01);
-		// a.setStudentName("Blah");
-		// results.add(a);
-		//
-		// a = new StudentResult();
-		// a.setsNo(2);
-		// a.setTotalMarks(60);
-		// a.setMulCurve(1.51);
-		// a.setProposedGrade("D");
-		// a.setStudentID("11-1002");
-		// a.setStudentName("Yada");
-		// results.add(a);
-		ExcelImporter eI = new ExcelImporter(results);
-		eI.importDataFromFile(new File("res/CS598.xls"));
+		// importFromExcel("res/CS598.xls");
 	}
 
 	/**
@@ -73,6 +59,120 @@ public class StudentClassResults {
 	public Vector<StudentResult> getResults() {
 		return results;
 	}
+
+	public void importFromExcel(String filename) {
+		ExcelImporter eI = new ExcelImporter(results);
+		eI.importDataFromFile(new File(filename));
+	}
+
+	public void setOptions(String courseCode, String courseName,
+			double addCurve, double mulCurve, boolean round) {
+		this.setCourseCode(courseCode);
+		this.setCourseName(courseName);
+		this.setAddCurve(addCurve);
+		this.setMulCurve(mulCurve);
+		this.setRound(round);
+	}
+
+	/**
+	 * @return the addCurve
+	 */
+	public double getAddCurve() {
+		return addCurve;
+	}
+
+	/**
+	 * @param addCurve
+	 *            the addCurve to set
+	 */
+	public void setAddCurve(double addCurve) {
+		this.addCurve = addCurve;
+		// populate for all student results
+		for (StudentResult res : results)
+			res.setAddCurve(addCurve);
+	}
+
+	/**
+	 * @return the mulCurve
+	 */
+	public double getMulCurve() {
+		return mulCurve;
+	}
+
+	/**
+	 * @param mulCurve
+	 *            the mulCurve to set
+	 */
+	public void setMulCurve(double mulCurve) {
+		this.mulCurve = mulCurve;
+		// populate for all student results
+		for (StudentResult res : results)
+			res.setMulCurve(mulCurve);
+	}
+
+	/**
+	 * @return the isRound
+	 */
+	public boolean isRound() {
+		return isRound;
+	}
+
+	/**
+	 * @param isRound
+	 *            the isRound to set
+	 */
+	public void setRound(boolean isRound) {
+		this.isRound = isRound;
+		// populate for all student results
+		for (StudentResult res : results)
+			res.setShouldRound(isRound);
+	}
+
+	/**
+	 * @return the courseCode
+	 */
+	public String getCourseCode() {
+		return courseCode;
+	}
+
+	/**
+	 * @param courseCode
+	 *            the courseCode to set
+	 */
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
+	}
+
+	/**
+	 * @return the courseName
+	 */
+	public String getCourseName() {
+		return courseName;
+	}
+
+	/**
+	 * @param courseName
+	 *            the courseName to set
+	 */
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
+	}
+
+	public void populateFinalGrades() {
+		// copy all calculated results to final grades 
+		for (StudentResult res : results){ 
+			res.setFinalGrade(res.getCalculatedGrade());
+		}
+	}
+
+	public int countGrade(String grade) {
+		int gradeCount = 0; 
+		for(StudentResult res : results){ 
+			if(res.getFinalGrade().equals(grade))
+				gradeCount++; 
+		}
+		return gradeCount;
+	}
 }
 
 class GradeTableModel implements TableModel {
@@ -80,7 +180,7 @@ class GradeTableModel implements TableModel {
 
 	final String[] columnNames = { "S.No.", "Student ID", "Student Name",
 			"Total Marks", "Proposed Grade", "Curved Marks",
-			"Calculated Grade", "Final Grade" };
+			"Calculated Grade", "Final Grade" , "Section"};
 
 	public GradeTableModel(StudentClassResults studentClassResults) {
 		this.classResults = studentClassResults;
@@ -114,8 +214,12 @@ class GradeTableModel implements TableModel {
 			return res.getCalculatedMarks();
 		} else if (col == 6) {
 			return res.getCalculatedGrade();
-		} else
+		} else if (col == 7) {
 			return res.getFinalGrade();
+		} else if (col == 8) {
+			return res.getSection();
+		} else 
+			return "INVALID COL";
 	}
 
 	/*
