@@ -52,11 +52,18 @@ public class ExcelImporter {
 				for (int i = 0; i < sheet.getColumns(); i++) {
 					Cell cell = sheet.getCell(i, j);
 					String cellContents = cell.getContents().trim();
-					if ("S. No.".trim().equalsIgnoreCase(cellContents)) {
+					// System.out.println(cellContents);
+					if (cellContents.toLowerCase().trim().contains("roll")) {
 						snoCol = i;
 						headerRow = j;
 					}
 				}
+			}
+			if(headerRow == -1) {
+				// System.out.println("Couldn't find header row.");
+				JOptionPane.showMessageDialog(null, "Could not find header row.", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return; 
 			}
 			System.out.println("Found header row at: " + headerRow);
 
@@ -102,6 +109,13 @@ public class ExcelImporter {
 			if (endStudentRow == -1)
 				endStudentRow = sheet.getRows();
 
+			if(beginStudentRow == -1) {
+				// System.out.println("Couldn't find header row.");
+				JOptionPane.showMessageDialog(null, "Could not find any student record.", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return; 
+			}
+			
 			System.out.println("Students rows from " + beginStudentRow + " to "
 					+ endStudentRow);
 
@@ -222,9 +236,9 @@ public class ExcelImporter {
 		
 		// let's try to predict the header columns 
 		for (int i = 0; i < headerNames.size(); i++){
-			if(headerNames.get(i).toLowerCase().contains("no."))
+			if(headerNames.get(i).trim().toLowerCase().equals("no."))
 				comboSno.setSelectedIndex(i);
-			else if(headerNames.get(i).toLowerCase().contains("id"))
+			else if(headerNames.get(i).toLowerCase().contains("roll"))
 				comboSID.setSelectedIndex(i);
 			else if(headerNames.get(i).toLowerCase().contains("name"))
 				comboSName.setSelectedIndex(i);

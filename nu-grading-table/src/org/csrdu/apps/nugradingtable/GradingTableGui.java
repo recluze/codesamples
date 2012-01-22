@@ -216,7 +216,7 @@ public class GradingTableGui extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource().equals(this.btnImportExcel)) {
 			System.out.println("Importing from excel ... ");
-			classResults.importFromExcel("res/CS598.xls");
+			classResults.importFromExcel("res/CS303.xls");
 		} else if (e.getSource().equals(this.btnSaveOptions)) {
 			System.out.println("Saving options ... ");
 			classResults.setOptions(txtCourseCode.getText(),
