@@ -1,13 +1,19 @@
 package org.csrdu.apps.nugradingtable;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import java.awt.print.PrinterException;
 import java.sql.ResultSet;
+import java.text.MessageFormat;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -48,6 +54,7 @@ public class GradingTableGui extends JFrame implements ActionListener {
 	private JLabel lSD;
 	private JLabel lSDP;
 	private JLabel lSF;
+	private JButton btnPrint;
 
 	public void addComponentsToPane() {
 		setLayout(new GridBagLayout());
@@ -157,6 +164,13 @@ public class GradingTableGui extends JFrame implements ActionListener {
 		c2.weightx = 0.25;
 		actionsPane.add(btnPopulateFinalGrades, c2);
 
+		btnPrint = new JButton("Print Grades");
+		btnPrint.addActionListener(this);
+		c2.gridx = 0;
+		c2.gridy = 3;
+		c2.weightx = 0.25;
+		actionsPane.add(btnPrint, c2);
+			        
 		// Continue with JTable ---------------------
 		c.weightx = 0.25;
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -225,6 +239,20 @@ public class GradingTableGui extends JFrame implements ActionListener {
 		} else if (e.getSource().equals(this.btnPopulateFinalGrades)) {
 			System.out.println("Populating final grades ... ");
 			classResults.populateFinalGrades();
+		} else if (e.getSource().equals(this.btnPrint)){
+			// try {
+			// MessageFormat headerFormat = new
+			// MessageFormat(this.txtCourseCode.getText() + " - " +
+			// this.txtCourseName.getText());
+			// MessageFormat footerFormat = new MessageFormat("- {0} -");
+			// gradeTable.print(JTable.PrintMode.FIT_WIDTH, headerFormat,
+			// footerFormat);
+			// } catch (PrinterException pe) {
+			// System.err.println("Error printing: " + pe.getMessage());
+			// }
+			
+			// let's try a custom print method based on iText
+			GradingTablePrintManager.print(this.gradeTable.getModel());
 		}
 
 		// in any case, refresh the JTable
