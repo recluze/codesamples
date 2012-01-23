@@ -231,6 +231,8 @@ public class GradingTableGui extends JFrame implements ActionListener {
 		if (e.getSource().equals(this.btnImportExcel)) {
 			System.out.println("Importing from excel ... ");
 			classResults.importFromExcel("res/CS303.xls");
+			this.txtCourseCode.setText(classResults.getCourseCode());
+			this.txtCourseName.setText(classResults.getCourseName());
 		} else if (e.getSource().equals(this.btnSaveOptions)) {
 			System.out.println("Saving options ... ");
 			classResults.setOptions(txtCourseCode.getText(),
@@ -252,13 +254,14 @@ public class GradingTableGui extends JFrame implements ActionListener {
 			// }
 			
 			// let's try a custom print method based on iText
-			GradingTablePrintManager.print(this.gradeTable.getModel());
+			GradingTablePrintManager.print(this.gradeTable.getModel(), txtCourseCode.getText(), txtCourseName.getText());
 		}
 
 		// in any case, refresh the JTable
 		// this.gradeTable.fire
-		this.repaint();
 		this.updateStats();
+		this.repaint();
+		
 	}
 
 	public void getStats() {

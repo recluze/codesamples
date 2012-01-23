@@ -13,6 +13,8 @@ public class StudentClassResults {
 	private String resultsFilename;
 	private String courseCode = "";
 	private String courseName = "";
+	private String batch = ""; 
+	private String semester = ""; 
 	private double addCurve = 0.0;
 	private double mulCurve = 1.0;
 	private boolean isRound = false;
@@ -61,7 +63,7 @@ public class StudentClassResults {
 	}
 
 	public void importFromExcel(String filename) {
-		ExcelImporter eI = new ExcelImporter(results);
+		ExcelImporter eI = new ExcelImporter(this);
 		eI.importDataFromFile(new File(filename));
 	}
 
@@ -173,6 +175,34 @@ public class StudentClassResults {
 		}
 		return gradeCount;
 	}
+
+    /**
+     * @return the batch
+     */
+    public String getBatch() {
+        return batch;
+    }
+
+    /**
+     * @param batch the batch to set
+     */
+    public void setBatch(String batch) {
+        this.batch = batch;
+    }
+
+    /**
+     * @return the semester
+     */
+    public String getSemester() {
+        return semester;
+    }
+
+    /**
+     * @param semester the semester to set
+     */
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
 }
 
 class GradeTableModel implements TableModel {

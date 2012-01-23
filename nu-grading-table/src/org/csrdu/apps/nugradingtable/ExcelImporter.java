@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
@@ -24,9 +26,11 @@ import jxl.read.biff.BiffException;
 public class ExcelImporter {
 
 	private Vector<StudentResult> results;
+    private StudentClassResults classResults;
 
-	public ExcelImporter(Vector<StudentResult> results) {
-		this.results = results;
+	public ExcelImporter(StudentClassResults studentClassResults) {
+		this.results = studentClassResults.getResults();
+        this.classResults = studentClassResults;
 	}
 
 	public void importDataFromFile(File file) {
@@ -44,6 +48,9 @@ public class ExcelImporter {
 				ex.printStackTrace();
 			}
 			Sheet sheet = workbook.getSheet(0);
+			
+			// try to predict the course code, course name, batch and semester 
+			predictCourseMetaInfo(sheet);
 
 			// Find the column with SNO ...
 			System.out.println("Found total rows: " + sheet.getRows());
@@ -74,8 +81,9 @@ public class ExcelImporter {
 			{
 				int i = 0;
 				while (i < sheet.getColumns()
-						&& !sheet.getCell(i, headerRow).getContents().trim()
-								.equals("")) {
+						//&& !sheet.getCell(i, headerRow).getContents().trim()
+						//		.equals("")) {
+				        ){
 					headers.put(sheet.getCell(i, headerRow).getContents(),new Integer(i));
 					headerNames.add(sheet.getCell(i, headerRow).getContents());
 					i++;
@@ -156,7 +164,58 @@ public class ExcelImporter {
 		}
 	}
 
-	/** Show a dialog to get the mappings 
+    private void predictCourseMetaInfo(Sheet sheet) {
+        // Let's go through first 15 rows trying to get the course meta info
+        // sample output from RADIX: "CS303 Software Engineering CS08 (Fall 2011)"
+        for (int j = 0; j < 1; j++) {
+            for (int i = 0; i < 1; i++) {
+                Cell cell = sheet.getCell(i, j);
+                String cellContents = cell.getContents().trim();
+                // System.out.println(cellContents);
+                // let's try to match the RE
+                Pattern pattern = Pattern.compile("([a-zA-Z]{2}[0-9]{3}) (.*) ([a-zA-Z]{2}[0-9]{2}[a-zA-Z]?) \\((.*)\\)(.*)");
+                Matcher matcher = pattern.matcher(cellContents);
+
+                System.out.println("trying to match: " + cellContents);
+                boolean found=false; 
+                if (matcher.find()) {
+                    System.out.format("I found the text"
+                            + " \"%s\" starting at "
+                            + "index %d and ending at index %d.%n \n",
+                            matcher.group(), matcher.start(), matcher.end());
+                    String courseCode = cellContents.substring(
+                            matcher.start(1), matcher.end(1));
+                    System.out.println("Course code: " + courseCode);
+
+                    String courseName = cellContents.substring(
+                            matcher.start(2), matcher.end(2));
+                    System.out.println("Course Name: " + courseName);
+                    
+                    String batch = cellContents.substring(
+                            matcher.start(3), matcher.end(3));
+                    System.out.println("Batch: " + batch);
+                    
+                    String semester = cellContents.substring(
+                            matcher.start(4), matcher.end(4));
+                    System.out.println("Semester: " + semester);
+                    
+                    
+                    found = true;
+                    // let's populate the thingy
+                    
+                    classResults.setCourseName(courseName);
+                    classResults.setCourseCode(courseCode);
+                    classResults.setBatch(batch);
+                    classResults.setSemester(semester);
+                }
+                if(found){
+                    return; 
+                }
+            }
+        }
+    }
+
+    /** Show a dialog to get the mappings 
 	 * 
 	 * @param headers The headers collected from the sheet 
 	 * @param headerNames 

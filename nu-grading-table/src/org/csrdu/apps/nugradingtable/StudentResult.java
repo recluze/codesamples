@@ -7,7 +7,7 @@ public class StudentResult {
     private String studentID = "";
     private double totalMarks = 0;
     private String proposedGrade = "";
-    private String finalGrade = "B";
+    private String finalGrade = "-";
     private String section = "A"; 
 
     /** Calculation data */
