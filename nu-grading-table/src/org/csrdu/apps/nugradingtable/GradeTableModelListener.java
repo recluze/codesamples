@@ -5,8 +5,10 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
 public class GradeTableModelListener implements TableModelListener {
-	private StudentClassResults results;
-	private JTable table;
+	@SuppressWarnings("unused")
+    private StudentClassResults results;
+	@SuppressWarnings("unused")
+    private JTable table;
 
 	public GradeTableModelListener(StudentClassResults results, JTable table) {
 		this.results = results;

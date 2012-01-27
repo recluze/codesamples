@@ -21,7 +21,7 @@ import com.lowagie.text.pdf.PdfWriter;
 public class GradingTablePrintManager {
 
     public static void print(TableModel model, String courseCode,
-            String courseName) {
+            String courseName, String courseBatch, String courseSemester) {
 
         try {
             // intialize document
@@ -35,9 +35,10 @@ public class GradingTablePrintManager {
 
             // set the title
             Paragraph code = new Paragraph(courseCode + " " +  courseName, titleFont);
-            //            Paragraph name = new Paragraph(courseName, titleFont);
+            Paragraph batch = new Paragraph(courseBatch + " (" +  courseSemester + ")", normalFont);
 
             d.add(code);
+            d.add(batch);
             // d.add(name);
 
             // set table headers

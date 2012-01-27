@@ -3,7 +3,6 @@ package org.csrdu.apps.nugradingtable;
 import java.util.Vector;
 
 import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import java.io.File;
