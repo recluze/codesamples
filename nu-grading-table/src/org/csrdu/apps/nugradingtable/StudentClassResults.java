@@ -1,9 +1,10 @@
 package org.csrdu.apps.nugradingtable;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Vector;
 
 import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 import java.io.File;
@@ -13,6 +14,8 @@ public class StudentClassResults {
 	private String resultsFilename;
 	private String courseCode = "";
 	private String courseName = "";
+	private String batch = ""; 
+	private String semester = ""; 
 	private double addCurve = 0.0;
 	private double mulCurve = 1.0;
 	private boolean isRound = false;
@@ -61,7 +64,7 @@ public class StudentClassResults {
 	}
 
 	public void importFromExcel(String filename) {
-		ExcelImporter eI = new ExcelImporter(results);
+		ExcelImporter eI = new ExcelImporter(this);
 		eI.importDataFromFile(new File(filename));
 	}
 
@@ -172,6 +175,42 @@ public class StudentClassResults {
 				gradeCount++; 
 		}
 		return gradeCount;
+	}
+
+    /**
+     * @return the batch
+     */
+    public String getBatch() {
+        return batch;
+    }
+
+    /**
+     * @param batch the batch to set
+     */
+    public void setBatch(String batch) {
+        this.batch = batch;
+    }
+
+    /**
+     * @return the semester
+     */
+    public String getSemester() {
+        return semester;
+    }
+
+    /**
+     * @param semester the semester to set
+     */
+    public void setSemester(String semester) {
+        this.semester = semester;
+    }
+
+	public Set<String> getSections() {
+		Set<String> sections = new HashSet<String>(); 
+		for (StudentResult res : results)
+			if (!sections.contains(res.getSection()))
+				sections.add(res.getSection());
+		return sections;
 	}
 }
 
