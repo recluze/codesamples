@@ -1,6 +1,8 @@
 package org.csrdu.apps.nugradingtable;
 
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -22,7 +24,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class GradingTableGui extends JFrame implements ActionListener,
         KeyListener {
@@ -274,6 +278,7 @@ public class GradingTableGui extends JFrame implements ActionListener,
         c.gridy = 1;
         gradeTable.setFillsViewportHeight(true);
         gradeTable.setAutoCreateRowSorter(true); // allow sorting
+        this.setTableRenderer();
         JScrollPane scroller = new JScrollPane(gradeTable);
         this.add(scroller, c);
 
@@ -566,5 +571,37 @@ public class GradingTableGui extends JFrame implements ActionListener,
 
     @Override
     public void keyTyped(KeyEvent e) {
+    }
+    
+    public void setTableRenderer() {
+    	gradeTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+			private static final long serialVersionUID = -1099303836499337746L;
+
+			@Override
+    	    public Component getTableCellRendererComponent(JTable table, Object value, 
+    	                    boolean isSelected, boolean hasFocus, int row, int column) {
+
+    	        // let the default renderer prepare the component for us
+    	        Component comp = super.getTableCellRendererComponent(table, value, 
+    	                                            isSelected, hasFocus, row, column);
+
+				if (comp instanceof JLabel) {
+					JLabel compLabel = (JLabel) comp; 
+					// now get the current font used for this cell
+					Font font = compLabel.getFont();
+
+					font = font.deriveFont(14.0f);
+					compLabel.setFont(font);
+					compLabel.setBackground(Color.WHITE);
+					compLabel.setForeground(Color.BLACK);
+					if(column > 2)  
+						compLabel.setHorizontalAlignment(SwingConstants.CENTER);
+					else 
+						compLabel.setHorizontalAlignment(SwingConstants.LEFT);
+				}
+				// now get the current font used for this cell
+				return comp;
+    	    }
+    	});
     }
 }
